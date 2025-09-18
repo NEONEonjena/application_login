@@ -5,7 +5,7 @@ import '../../widgets/appbar.dart';
 class CustomerScreen extends StatefulWidget {
   final String username;
   final String password;
-  
+
   const CustomerScreen({
     super.key,
     required this.username,
@@ -20,7 +20,7 @@ class CustomerScreen extends StatefulWidget {
 
 class CustomerScreenState extends State<CustomerScreen> {
   final _formKey = GlobalKey<FormState>();
-  
+
   //Se inicializan los controladores de texto para el formulario
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _lastnameController = TextEditingController();
@@ -28,7 +28,16 @@ class CustomerScreenState extends State<CustomerScreen> {
   final List<String> _statusList = ['activo', 'inactivo'];
   String _selectedStatus = 'activo';
   bool _hasSelectedProfileImage = false;
-  
+
+  @override
+  void dispose() {
+    // Se limpian los campos del formulario
+    _nameController.dispose();
+    _lastnameController.dispose();
+    _addressController.dispose();
+    super.dispose();
+  }
+
   //Se crea el método para seleccionar imagen de perfil solo con un icono
   void _toggleProfileImage() {
     setState(() {
@@ -52,7 +61,7 @@ class CustomerScreenState extends State<CustomerScreen> {
         print('Estado: $_selectedStatus');
         print('Foto de perfil seleccionada: $_hasSelectedProfileImage');
       }
-      
+
       // Se muestra un mensaje de éxito
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
@@ -60,18 +69,17 @@ class CustomerScreenState extends State<CustomerScreen> {
           backgroundColor: Colors.green,
         ),
       );
-      
-      // Se limpian los campos del formulario
-      _nameController.dispose();
-      _lastnameController.dispose();
-      _addressController.dispose();
+
+      _nameController.clear();
+      _lastnameController.clear();
+      _addressController.clear();
       setState(() {
         _selectedStatus = 'activo';
         _hasSelectedProfileImage = false;
       });
     }
   }
-  
+
   // Este método se encarga de manejar el botón de cancelar
   void _cancel() {
     // Esto permite limpiar los campos del formulario
@@ -82,11 +90,7 @@ class CustomerScreenState extends State<CustomerScreen> {
       _selectedStatus = 'activo';
       _hasSelectedProfileImage = false;
     });
-    
-    if (kDebugMode) {
-      print('Formulario cancelado');
-    }
-    
+
     // Mensaje de cancelación
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(
@@ -95,11 +99,12 @@ class CustomerScreenState extends State<CustomerScreen> {
       ),
     );
   }
-  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const CustomAppBar(title: 'Agregar Cliente', showBackButton: true),
+      appBar:
+          const CustomAppBar(title: 'Agregar Cliente', showBackButton: true),
       body: Padding(
         padding: const EdgeInsets.all(20.0),
         child: Form(
@@ -114,11 +119,12 @@ class CustomerScreenState extends State<CustomerScreen> {
                       radius: 60,
                       backgroundColor: Colors.grey.shade200,
                       backgroundImage: _hasSelectedProfileImage
-                          ? const AssetImage('assets/img/logos/imagen.webp')
+                          ? const AssetImage('assets/img/logos/logo.png')
                           : null,
                       child: _hasSelectedProfileImage
                           ? null
-                          : const Icon(Icons.person, size: 60, color: Colors.grey),
+                          : const Icon(Icons.person,
+                              size: 60, color: Colors.grey),
                     ),
                     Positioned(
                       bottom: 0,

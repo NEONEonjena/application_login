@@ -36,7 +36,7 @@ class UserScreen extends StatelessWidget {
             const Center(
               child: CircleAvatar(
                 radius: 60,
-                backgroundColor: CustomTheme.secondaryDark,
+                backgroundColor: CustomTheme.primaryDark,
                 child: Icon(Icons.person, size: 70, color: Colors.white),
               ),
             ),
