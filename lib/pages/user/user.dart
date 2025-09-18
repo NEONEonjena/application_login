@@ -1,3 +1,4 @@
+import 'package:application_login/theme/theme_app.dart';
 import 'package:flutter/material.dart';
 import '../../widgets/appbar.dart';
 
@@ -35,7 +36,7 @@ class UserScreen extends StatelessWidget {
             const Center(
               child: CircleAvatar(
                 radius: 60,
-                backgroundColor: Colors.blue,
+                backgroundColor: CustomTheme.secondaryDark,
                 child: Icon(Icons.person, size: 70, color: Colors.white),
               ),
             ),
@@ -47,7 +48,7 @@ class UserScreen extends StatelessWidget {
                   children: [
                     _buildInfoRow('Usuario:', username),
                     const SizedBox(height: 15),
-                    _buildInfoRow('Email:', '$username@demo.com'),
+                    _buildInfoRow('Email:', '$username'),
                     const SizedBox(height: 15),
                     _buildInfoRow('Contraseña:', 
                         '${'*' * password.length} (${password.length} caracteres)'),

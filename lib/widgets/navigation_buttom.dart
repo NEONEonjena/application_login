@@ -12,13 +12,17 @@ class BottomNavigation extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final primaryColor = Theme.of(context).primaryColor;
+    
     return BottomNavigationBar(
       currentIndex: currentIndex,
       onTap: onTap,
-      selectedItemColor: Theme.of(context).primaryColor,
+      selectedItemColor: primaryColor,
       unselectedItemColor: Colors.grey,
       showSelectedLabels: true,
       type: BottomNavigationBarType.fixed,
+      elevation: 8,
+      backgroundColor: Theme.of(context).cardColor,
       items: const [
         BottomNavigationBarItem(
           icon: Icon(Icons.home),
@@ -31,6 +35,10 @@ class BottomNavigation extends StatelessWidget {
         BottomNavigationBarItem(
           icon: Icon(Icons.settings),
           label: 'Configuracion',
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.people),
+          label: 'Cliente',
         ),
       ],
     );

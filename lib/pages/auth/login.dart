@@ -39,7 +39,7 @@ class _LoginScreenState extends State<LoginScreen> {
         _passwordController.text = _registeredPassword ?? '';
       });
 
-      // ignore: use_build_context_synchronously
+      // Mostrar mensaje de éxito
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text('Usuario registrado exitosamente')),
       );
@@ -50,6 +50,9 @@ class _LoginScreenState extends State<LoginScreen> {
     if (_formKey.currentState!.validate()) {
       final username = _usernameController.text;
       final password = _passwordController.text;
+
+      debugPrint('Usuario: $username');
+      debugPrint('Contraseña: $password');
 
       Navigator.pushReplacement(
         context,
@@ -80,20 +83,8 @@ class _LoginScreenState extends State<LoginScreen> {
     if (value == null || value.isEmpty) {
       return 'Por favor ingrese su contraseña';
     }
-    if (value.length < 8 || value.length > 16) {
-      return 'La contraseña debe tener entre 8 y 16 caracteres';
-    }
-    if (!RegExp(r'[0-9]').hasMatch(value)) {
-      return 'La contraseña debe contener al menos un dígito';
-    }
-    if (!RegExp(r'[a-z]').hasMatch(value)) {
-      return 'La contraseña debe contener al menos una minúscula';
-    }
-    if (!RegExp(r'[A-Z]').hasMatch(value)) {
-      return 'La contraseña debe contener al menos una mayúscula';
-    }
-    if (!RegExp(r'[^a-zA-Z0-9]').hasMatch(value)) {
-      return 'La contraseña debe contener al menos un carácter no alfanumérico';
+    if (!RegExp(r'^(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*(),.?:;])(?=.*[0-9]).{8,16}$').hasMatch(value)) {
+      return 'La contraseña debe contener al menos una minúscula, una mayúscula, un carácter especial y un dígito';
     }
     return null;
   }
@@ -110,7 +101,7 @@ class _LoginScreenState extends State<LoginScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Image.asset(
-                'assets/img/logos/logo.webp',
+                'assets/img/logos/logo.png',
                 height: 100,
               ),
               const SizedBox(height: 20),

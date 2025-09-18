@@ -1,29 +1,27 @@
 import 'package:flutter/material.dart';
 
 class CustomTheme {
-  // Colores primarios
-  static const Color primaryColor = Color.fromARGB(255, 93, 21, 3);
-  static const Color primaryLight = Color.fromARGB(255, 232, 235, 236);
-  static const Color primaryDark = Color(0xFF005005);
+  //colores primarios
 
-  // Colores secundarios
+  static const Color primaryColor = Color(0xFF2EE7D32);
+  static const Color primaryLight = Color(0xFF60AD5E);
+  static const Color primaryDark = Color(0xFF0005005);
+
+  //colores secundarios
+
   static const Color secondaryColor = Color(0xFFFFC107);
   static const Color secondaryLight = Color(0xFFFFF350);
   static const Color secondaryDark = Color(0xFFC79100);
 
-  // Colores de texto
-  static const Color textPrimary = Color(0xFF121212);
+  // colores de texto
+  static const Color textPrimary = Color(0xFF212121);
   static const Color textSecondary = Color(0xFF757575);
-
-  // Colores de fondo
-  static const Color backgroundLight = Color(0xFFFFFFFF);
+  static const Color backgroundLight = Color(0xFFF5F5F5);
   static const Color backgroundDark = Color(0xFF303030);
+  //Colores para mensajes de error y exito
+  static const Color errorColor = Color(0xFFC5032B);
+  static const Color successColor = Color(0xFF4CAF50);
 
-  // Colores de error y éxito
-  static const Color errorColor = Color(0xFFF5032B);
-  static const Color successColor = Color.fromARGB(255, 233, 83, 14);
-
-  // Tema claro
   static ThemeData lightTheme() {
     return ThemeData(
       brightness: Brightness.light,
@@ -31,13 +29,12 @@ class CustomTheme {
       primaryColorLight: primaryLight,
       primaryColorDark: primaryDark,
       colorScheme: const ColorScheme.light().copyWith(
-        primary: const Color.fromARGB(255, 83, 35, 3),
-        secondary: secondaryColor,
-        background: backgroundLight,
-      ),
+          primary: primaryColor,
+          secondary: secondaryColor,
+          background: backgroundLight),
       scaffoldBackgroundColor: backgroundLight,
       appBarTheme: const AppBarTheme(
-        color: Color.fromARGB(255, 224, 82, 6),
+        color: primaryColor,
         iconTheme: IconThemeData(color: Colors.white),
         titleTextStyle: TextStyle(
           color: Colors.white,
@@ -48,11 +45,6 @@ class CustomTheme {
       textTheme: const TextTheme(
         displayLarge: TextStyle(
           fontSize: 32,
-          fontWeight: FontWeight.bold,
-          color: textPrimary,
-        ),
-        displayMedium: TextStyle(
-          fontSize: 28,
           fontWeight: FontWeight.bold,
           color: textPrimary,
         ),
@@ -82,7 +74,7 @@ class CustomTheme {
           backgroundColor: primaryColor,
           foregroundColor: Colors.white,
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(8),
+            borderRadius: BorderRadius.all(Radius.circular(8)),
           ),
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
           textStyle: const TextStyle(
@@ -103,11 +95,11 @@ class CustomTheme {
         labelStyle: const TextStyle(color: textSecondary),
         hintStyle: const TextStyle(color: textSecondary),
       ),
-      cardTheme: const CardThemeData(
+      cardTheme: CardThemeData(
         color: Colors.white,
         elevation: 2,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(Radius.circular(12)),
+          borderRadius: BorderRadius.circular(12),
         ),
       ),
     );
@@ -119,15 +111,15 @@ class CustomTheme {
       brightness: Brightness.dark,
       primaryColor: primaryColor,
       primaryColorLight: primaryLight,
-      primaryColorDark: const Color.fromARGB(255, 63, 56, 49),
+      primaryColorDark: primaryDark,
       colorScheme: const ColorScheme.dark().copyWith(
-        primary: const Color.fromARGB(255, 213, 41, 6),
-        secondary: const Color.fromARGB(255, 27, 23, 9),
+        primary: primaryColor,
+        secondary: secondaryColor,
         background: backgroundDark,
       ),
       scaffoldBackgroundColor: backgroundDark,
       appBarTheme: const AppBarTheme(
-        color: Color.fromARGB(255, 22, 32, 22),
+        color: primaryDark,
         iconTheme: IconThemeData(color: Colors.white),
         titleTextStyle: TextStyle(
           color: Colors.white,
@@ -161,7 +153,7 @@ class CustomTheme {
         ),
       ),
       buttonTheme: const ButtonThemeData(
-        buttonColor: Color.fromARGB(255, 234, 239, 241),
+        buttonColor: primaryColor,
         textTheme: ButtonTextTheme.primary,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.all(Radius.circular(8)),
@@ -169,8 +161,8 @@ class CustomTheme {
       ),
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
-          backgroundColor: const Color.fromARGB(255, 125, 78, 46),
-          foregroundColor: const Color.fromARGB(255, 138, 44, 44),
+          backgroundColor: primaryColor,
+          foregroundColor: Colors.white,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(8),
           ),
@@ -193,11 +185,11 @@ class CustomTheme {
         labelStyle: const TextStyle(color: Colors.white70),
         hintStyle: const TextStyle(color: Colors.white70),
       ),
-      cardTheme: const CardThemeData(
-        color: Color(0xFF424242),
+      cardTheme: CardThemeData(
+        color: const Color(0xFF424242),
         elevation: 2,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(Radius.circular(12)),
+          borderRadius: BorderRadius.circular(12),
         ),
       ),
     );

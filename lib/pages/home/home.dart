@@ -6,6 +6,8 @@ import '../../widgets/navigation_buttom.dart';
 import '../user/user.dart';
 import '../auth/change_password.dart';
 import '../auth/login.dart';
+import '../customer/customer.dart';
+import '../common/under_construction.dart';
 
 class HomeScreen extends StatefulWidget {
   final String username;
@@ -34,7 +36,23 @@ class _HomeScreenState extends State<HomeScreen> {
     _pages = [
       HomeContent(username: widget.username),
       UserScreen(username: widget.username, password: widget.password),
-      SettingsScreen(username: widget.username, password: widget.password)
+      SettingsScreen(username: widget.username, password: widget.password),
+      CustomerScreen(username: widget.username, password: widget.password),
+      const UnderConstructionScreen(
+        title: 'Notificaciones',
+        message: 'El sistema de notificaciones está siendo implementado',
+        icon: Icons.notifications_active,
+      ),
+      const UnderConstructionScreen(
+        title: 'Ayuda',
+        message: 'La sección de ayuda estará disponible próximamente',
+        icon: Icons.help_outline,
+      ),
+      const UnderConstructionScreen(
+        title: 'Acerca de',
+        message: 'Información sobre la aplicación y sus desarrolladores',
+        icon: Icons.info_outline,
+      )
     ];
 } 
 
@@ -98,6 +116,14 @@ class _HomeScreenState extends State<HomeScreen> {
         return 'Perfil';
       case 2:
         return 'Configuración';
+      case 3:
+        return 'Cliente';
+      case 4:
+        return 'Notificaciones';
+      case 5:
+        return 'Ayuda';
+      case 6:
+        return 'Acerca de';
       default:
         return 'Mi Aplicación';
     }
@@ -109,6 +135,7 @@ class HomeContent extends StatelessWidget {
 
   const HomeContent({super.key, required this.username});
 
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -117,7 +144,7 @@ class HomeContent extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Bienvenido, $username!',
+            '¡Bienvenido, $username!',
             style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
           ),
           const SizedBox(height: 20),
@@ -125,11 +152,12 @@ class HomeContent extends StatelessWidget {
             child: Padding(
               padding: EdgeInsets.all(16.0),
               child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Icon(Icons.home, size: 50, color: Colors.blue),
-                  SizedBox(height: 10),
+                  SizedBox(height: 20),
                   Text('Esta es la pantalla de inicio de la aplicación.'),
-                  SizedBox(height: 10),
+                  SizedBox(height: 20),
                   Text(
                     'Usa el menu lateral o la barra de navegación inferior para explorar las diferentes secciones.',
                     textAlign: TextAlign.center,
@@ -157,22 +185,25 @@ class HomeContent extends StatelessWidget {
     );
   }
 
-  Widget _buildFeatureCard(IconData icon, String title, Color color) {
+  Widget _buildFeatureCard(IconData icon, String title, Color color, {VoidCallback? onTap}) {
     return Card(
       elevation: 3,
-      child: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(icon, size: 50, color: color),
-            const SizedBox(height: 10),
-            Text(
-              title, 
-              style: const TextStyle(fontWeight: FontWeight.bold),
-              textAlign: TextAlign.center,
-            ),
-          ],
+      child: InkWell(
+        onTap: onTap,
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(icon, size: 50, color: color),
+              const SizedBox(height: 10),
+              Text(
+                title, 
+                style: const TextStyle(fontWeight: FontWeight.bold),
+                textAlign: TextAlign.center,
+              ),
+            ],
+          ),
         ),
       ),
     );
