@@ -16,9 +16,9 @@ dependencies:
   cupertino_icons: ^1.0.8
   image_picker: ^1.0.4
   provider: ^6.1.1
+  flutter_launcher_icons: ^0.14.4
 
 dev_dependencies:
-  flutter_launcher_icons: ^0.13.1
   flutter_test:
     sdk: flutter
   flutter_lints: ^5.0.0
@@ -27,6 +27,10 @@ flutter_launcher_icons:
   android: true
   ios: true
   image_path: "assets/img/logos/logo.png"
+  adaptative_icon_background: "#FFFFFF"
+  adaptative_icon_foreground: "assets/img/logos/logo.png"
+  remove_alpha_ios: true
+  min_sdk_android: 21
 
 flutter:
   uses-material-design: true

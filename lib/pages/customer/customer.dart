@@ -25,8 +25,8 @@ class CustomerScreenState extends State<CustomerScreen> {
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _lastnameController = TextEditingController();
   final TextEditingController _addressController = TextEditingController();
-  final List<String> _statusList = ['activo', 'inactivo'];
-  String _selectedStatus = 'activo';
+  final List<String> _statusList = ['Activo', 'Inactivo','Bloqueado'];
+  String _selectedStatus = 'Activo';
   bool _hasSelectedProfileImage = false;
 
   @override
@@ -74,7 +74,7 @@ class CustomerScreenState extends State<CustomerScreen> {
       _lastnameController.clear();
       _addressController.clear();
       setState(() {
-        _selectedStatus = 'activo';
+        _selectedStatus = 'Activo';
         _hasSelectedProfileImage = false;
       });
     }
@@ -87,7 +87,7 @@ class CustomerScreenState extends State<CustomerScreen> {
     _lastnameController.clear();
     _addressController.clear();
     setState(() {
-      _selectedStatus = 'activo';
+      _selectedStatus = 'Activo';
       _hasSelectedProfileImage = false;
     });
 
@@ -195,7 +195,7 @@ class CustomerScreenState extends State<CustomerScreen> {
                 controller: _addressController,
                 decoration: const InputDecoration(
                   labelText: 'Dirección',
-                  prefixIcon: Icon(Icons.map_sharp),
+                  prefixIcon: Icon(Icons.location_on_outlined),
                   border: OutlineInputBorder(),
                 ),
                 validator: (value) {
@@ -210,14 +210,14 @@ class CustomerScreenState extends State<CustomerScreen> {
               DropdownButtonFormField<String>(
                 decoration: const InputDecoration(
                   labelText: 'Estado',
-                  prefixIcon: Icon(Icons.check_circle_outline),
+                  prefixIcon: Icon(Icons.toggle_on),
                   border: OutlineInputBorder(),
                 ),
                 value: _selectedStatus,
                 items: _statusList.map((String status) {
                   return DropdownMenuItem<String>(
                     value: status,
-                    child: Text(status.toUpperCase()),
+                    child: Text(status),
                   );
                 }).toList(),
                 onChanged: (String? newValue) {

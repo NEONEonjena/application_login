@@ -4,10 +4,8 @@ import '../../widgets/appbar.dart';
 import '../../widgets/navigation_drawer.dart';
 import '../../widgets/navigation_buttom.dart';
 import '../user/user.dart';
-import '../auth/change_password.dart';
 import '../auth/login.dart';
 import '../customer/customer.dart';
-import '../common/under_construction.dart';
 
 class HomeScreen extends StatefulWidget {
   final String username;
@@ -38,21 +36,9 @@ class _HomeScreenState extends State<HomeScreen> {
       UserScreen(username: widget.username, password: widget.password),
       SettingsScreen(username: widget.username, password: widget.password),
       CustomerScreen(username: widget.username, password: widget.password),
-      const UnderConstructionScreen(
-        title: 'Notificaciones',
-        message: 'El sistema de notificaciones está siendo implementado',
-        icon: Icons.notifications_active,
-      ),
-      const UnderConstructionScreen(
-        title: 'Ayuda',
-        message: 'La sección de ayuda estará disponible próximamente',
-        icon: Icons.help_outline,
-      ),
-      const UnderConstructionScreen(
-        title: 'Acerca de',
-        message: 'Información sobre la aplicación y sus desarrolladores',
-        icon: Icons.info_outline,
-      )
+      _buildEmptyPlaceholder('Notificaciones', Icons.notifications_active),
+      _buildEmptyPlaceholder('Ayuda', Icons.help_outline),
+      _buildEmptyPlaceholder('Acerca de', Icons.info_outline),
     ];
 } 
 
@@ -127,6 +113,34 @@ class _HomeScreenState extends State<HomeScreen> {
       default:
         return 'Mi Aplicación';
     }
+  }
+  
+  // Método para crear un placeholder para las secciones sin implementar
+  Widget _buildEmptyPlaceholder(String title, IconData icon) {
+    return Center(
+      child: Padding(
+        padding: const EdgeInsets.all(20.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(
+              icon,
+              size: 100,
+              color: Colors.grey,
+            ),
+            const SizedBox(height: 20),
+            Text(
+              title,
+              style: const TextStyle(
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
+                color: Colors.grey,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }
 
